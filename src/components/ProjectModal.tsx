@@ -94,6 +94,13 @@ export const ProjectModal: React.FC = () => {
               alt={selectedProject.title}
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.currentTarget;
+                const filename = selectedProject.image.split('/').pop();
+                if (filename && !target.src.includes(`/images/${filename}`)) {
+                  target.src = `/images/${filename}`;
+                }
+              }}
             />
           </div>
 

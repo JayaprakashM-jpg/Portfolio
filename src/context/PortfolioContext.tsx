@@ -61,19 +61,34 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        const certificates = Array.isArray(parsed.certificates)
-          ? parsed.certificates.map((c: Certificate) => {
-              if (c.id === 'cert-hackathon' || c.title?.toLowerCase().includes('naan mudhalvan')) {
-                return {
-                  ...c,
-                  title: 'Certificate of Participation — Naan Mudhalvan Hackathon',
-                  description:
-                    'Participated in the state-level Naan Mudhalvan Hackathon conducted in collaboration with IBM. Contributed under the Front-End Technologies track developing responsive user interfaces and rapid web prototypes.',
-                };
-              }
-              return c;
-            })
-          : initialPortfolioData.certificates;
+        const fixPath = (url: string | undefined): string => {
+          if (!url) return '';
+          if (url.includes('/src/assets/images/')) {
+            return url.replace(/.*\/src\/assets\/images\//, '/images/');
+          }
+          return url;
+        };
+
+        const certificates = (Array.isArray(parsed.certificates) ? parsed.certificates : initialPortfolioData.certificates).map((c: Certificate) => {
+          const updatedCert = {
+            ...c,
+            photoUrl: fixPath(c.photoUrl),
+          };
+          if (c.id === 'cert-hackathon' || c.title?.toLowerCase().includes('naan mudhalvan')) {
+            return {
+              ...updatedCert,
+              title: 'Certificate of Participation — Naan Mudhalvan Hackathon',
+              description:
+                'Participated in the state-level Naan Mudhalvan Hackathon conducted in collaboration with IBM. Contributed under the Front-End Technologies track developing responsive user interfaces and rapid web prototypes.',
+            };
+          }
+          return updatedCert;
+        });
+
+        const projects = (Array.isArray(parsed.projects) ? parsed.projects : initialPortfolioData.projects).map((p: Project) => ({
+          ...p,
+          image: fixPath(p.image),
+        }));
 
         const summary = parsed.profile?.summary && parsed.profile.summary.includes('state-level recognition')
           ? parsed.profile.summary.replace(
@@ -82,15 +97,18 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             )
           : parsed.profile?.summary || initialPortfolioData.profile.summary;
 
+        const rawAvatar = parsed.profile?.avatarUrl ? fixPath(parsed.profile.avatarUrl) : '';
+
         return {
           ...initialPortfolioData,
           ...parsed,
+          projects,
           certificates,
           profile: {
             ...initialPortfolioData.profile,
             ...(parsed.profile || {}),
             summary,
-            avatarUrl: parsed.profile?.avatarUrl || initialPortfolioData.profile.avatarUrl,
+            avatarUrl: rawAvatar || initialPortfolioData.profile.avatarUrl,
             socialLinks: {
               ...initialPortfolioData.profile.socialLinks,
               ...(parsed.profile?.socialLinks || {}),

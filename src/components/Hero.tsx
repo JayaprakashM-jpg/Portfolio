@@ -138,6 +138,12 @@ export const Hero: React.FC = () => {
                     src={profile.avatarUrl}
                     alt={profile.name}
                     className="w-full h-full object-cover rounded-full bg-navy"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('/images/profile_jayaprakash_portrait_1793369527676.jpg')) {
+                        target.src = '/images/profile_jayaprakash_portrait_1793369527676.jpg';
+                      }
+                    }}
                   />
                 </div>
               </div>

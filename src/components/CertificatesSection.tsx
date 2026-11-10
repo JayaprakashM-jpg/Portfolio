@@ -66,6 +66,13 @@ export const CertificatesSection: React.FC = () => {
                     alt={cert.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const filename = cert.photoUrl.split('/').pop();
+                      if (filename && !target.src.includes(`/images/${filename}`)) {
+                        target.src = `/images/${filename}`;
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/60 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <span className="px-4 py-2 rounded-xl bg-white/95 dark:bg-navy-surface/95 text-navy dark:text-beige-light text-xs font-semibold backdrop-blur-md flex items-center gap-2 shadow-xl">

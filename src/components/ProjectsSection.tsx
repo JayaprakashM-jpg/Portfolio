@@ -109,6 +109,13 @@ export const ProjectsSection: React.FC = () => {
                         alt={project.title}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          const filename = project.image.split('/').pop();
+                          if (filename && !target.src.includes(`/images/${filename}`)) {
+                            target.src = `/images/${filename}`;
+                          }
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent" />
 

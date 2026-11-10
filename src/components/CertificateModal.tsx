@@ -50,6 +50,13 @@ export const CertificateModal: React.FC = () => {
               alt={selectedCertificate.title}
               referrerPolicy="no-referrer"
               className="max-h-[500px] w-auto object-contain rounded-lg shadow-md"
+              onError={(e) => {
+                const target = e.currentTarget;
+                const filename = selectedCertificate.photoUrl.split('/').pop();
+                if (filename && !target.src.includes(`/images/${filename}`)) {
+                  target.src = `/images/${filename}`;
+                }
+              }}
             />
           </div>
 

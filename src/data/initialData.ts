@@ -8,7 +8,7 @@ export const initialPortfolioData: PortfolioData = {
     location: 'Kanniyakumari, Tamil Nadu, India',
     email: 'mprakash102006@gmail.com',
     phone: '+91 9342465277',
-    avatarUrl: '/src/assets/images/profile_jayaprakash_portrait_1793369527676.jpg',
+    avatarUrl: '/images/profile_jayaprakash_portrait_1793369527676.jpg',
     github: 'https://github.com/JayaprakashM-jpg',
     linkedin: 'https://linkedin.com/in/jayaprakash-m',
     socialLinks: {
@@ -37,7 +37,7 @@ export const initialPortfolioData: PortfolioData = {
       category: 'Cybersecurity',
       date: '2025 – 2026',
       featured: true,
-      image: '/src/assets/images/project_shieldai_malware_1793356467348.jpg',
+      image: '/images/project_shieldai_malware_1793356467348.jpg',
       description:
         'A full-stack cybersecurity application featuring an automated machine learning pipeline comparing Random Forest, XGBoost, and Neural Network models to auto-select the peak F1-score classifier.',
       longDescription:
@@ -174,7 +174,7 @@ export const initialPortfolioData: PortfolioData = {
       issuer: 'IBM & Tamil Nadu Skill Development Corporation (TNSDC)',
       issueDate: 'November 2024',
       credentialId: 'NM-IBM-HACK-2024-FE',
-      photoUrl: '/src/assets/images/cert_hackathon_recognition_1793356466496.jpg',
+      photoUrl: '/images/cert_hackathon_recognition_1793356466496.jpg',
       category: 'Hackathon',
       description:
         'Participated in the state-level Naan Mudhalvan Hackathon conducted in collaboration with IBM. Contributed under the Front-End Technologies track developing responsive user interfaces and rapid web prototypes.',
@@ -187,7 +187,7 @@ export const initialPortfolioData: PortfolioData = {
       issuer: 'IBM SkillsBuild',
       issueDate: 'October 2024',
       credentialId: 'IBM-DA-84729103',
-      photoUrl: '/src/assets/images/cert_ibm_data_analytics_1793356465692.jpg',
+      photoUrl: '/images/cert_ibm_data_analytics_1793356465692.jpg',
       category: 'Professional',
       description:
         'Comprehensive professional credential covering data analysis methodologies, exploratory data analysis (EDA), data wrangling with Python and Pandas, statistical hypothesis testing, and business insight reporting.',
@@ -200,7 +200,7 @@ export const initialPortfolioData: PortfolioData = {
       issuer: 'Infosys Springboard',
       issueDate: 'October 2023',
       credentialId: 'IS-DF-2023-A123B4',
-      photoUrl: '/src/assets/images/cert_infosys_devops_1793356465866.jpg',
+      photoUrl: '/images/cert_infosys_devops_1793356465866.jpg',
       category: 'Cloud & DevOps',
       description:
         'Foundational industry certification on DevOps culture, continuous integration and continuous deployment (CI/CD) pipelines, containerization concepts, infrastructure as code, and agile delivery.',

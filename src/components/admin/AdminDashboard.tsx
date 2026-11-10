@@ -572,6 +572,13 @@ const ProjectsTab: React.FC<{
                 src={project.image}
                 alt={project.title}
                 className="w-16 h-12 object-cover rounded-xl border border-beige-border dark:border-navy-border shrink-0 bg-navy"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const filename = project.image.split('/').pop();
+                  if (filename && !target.src.includes(`/images/${filename}`)) {
+                    target.src = `/images/${filename}`;
+                  }
+                }}
               />
               <div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -705,7 +712,18 @@ const CertificatesTab: React.FC<{
           >
             <div>
               <div className="aspect-[4/3] bg-slate-950 relative overflow-hidden">
-                <img src={cert.photoUrl} alt={cert.title} className="w-full h-full object-cover" />
+                <img
+                  src={cert.photoUrl}
+                  alt={cert.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    const filename = cert.photoUrl.split('/').pop();
+                    if (filename && !target.src.includes(`/images/${filename}`)) {
+                      target.src = `/images/${filename}`;
+                    }
+                  }}
+                />
                 <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-slate-900/80 text-white text-[10px] font-mono">
                   {cert.category}
                 </div>
@@ -1172,6 +1190,12 @@ const ProfileTab: React.FC<{
                 src={formData.avatarUrl}
                 alt="Profile Preview"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('/images/profile_jayaprakash_portrait_1793369527676.jpg')) {
+                    target.src = '/images/profile_jayaprakash_portrait_1793369527676.jpg';
+                  }
+                }}
               />
             </div>
             <div className="flex-1 space-y-2 w-full">
@@ -1642,7 +1666,7 @@ const ProjectEditorModal: React.FC<{
   const [hostingUrl, setHostingUrl] = useState(initialProject?.hostingUrl || initialProject?.liveDemoUrl || '');
   const [image, setImage] = useState(
     initialProject?.image ||
-      '/src/assets/images/project_shieldai_malware_1793356467348.jpg'
+      '/images/project_shieldai_malware_1793356467348.jpg'
   );
   const [featured, setFeatured] = useState(initialProject?.featured ?? true);
 
@@ -1904,7 +1928,7 @@ const CertificateEditorModal: React.FC<{
   const [verificationUrl, setVerificationUrl] = useState(initialCert?.verificationUrl || '');
   const [photoUrl, setPhotoUrl] = useState(
     initialCert?.photoUrl ||
-      '/src/assets/images/cert_ibm_data_analytics_1793356465692.jpg'
+      '/images/cert_ibm_data_analytics_1793356465692.jpg'
   );
   const [description, setDescription] = useState(initialCert?.description || '');
   const [skills, setSkills] = useState(initialCert?.skills?.join(', ') || 'Python, Data Analytics, Visualization');
